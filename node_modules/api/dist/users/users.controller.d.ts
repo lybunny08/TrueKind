@@ -1,0 +1,121 @@
+import { UsersService } from "./users.service.js";
+import { PrismaService } from "../prisma/prisma.service.js";
+import type { AuthenticatedUser, AddressInput } from "../common/types.js";
+export declare class UsersController {
+    private users;
+    private prisma;
+    constructor(users: UsersService, prisma: PrismaService);
+    getProfile(user: AuthenticatedUser): Promise<{
+        email: string;
+        name: string | null;
+        id: string;
+        role: import("@prisma/client").$Enums.Role;
+        createdAt: Date;
+        addresses: {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            userId: string;
+            type: string;
+            firstName: string;
+            lastName: string;
+            company: string | null;
+            address1: string;
+            address2: string | null;
+            city: string;
+            state: string;
+            postalCode: string;
+            country: string;
+            phone: string | null;
+            isDefault: boolean;
+        }[];
+    }>;
+    updateProfile(user: AuthenticatedUser, body: {
+        name?: string;
+        email?: string;
+    }): Promise<{
+        email: string;
+        name: string | null;
+        id: string;
+        role: import("@prisma/client").$Enums.Role;
+    }>;
+    getAddresses(user: AuthenticatedUser): Promise<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        userId: string;
+        type: string;
+        firstName: string;
+        lastName: string;
+        company: string | null;
+        address1: string;
+        address2: string | null;
+        city: string;
+        state: string;
+        postalCode: string;
+        country: string;
+        phone: string | null;
+        isDefault: boolean;
+    }[]>;
+    createAddress(user: AuthenticatedUser, body: AddressInput): Promise<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        userId: string;
+        type: string;
+        firstName: string;
+        lastName: string;
+        company: string | null;
+        address1: string;
+        address2: string | null;
+        city: string;
+        state: string;
+        postalCode: string;
+        country: string;
+        phone: string | null;
+        isDefault: boolean;
+    }>;
+    updateAddress(user: AuthenticatedUser, addressId: string, body: Partial<AddressInput>): Promise<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        userId: string;
+        type: string;
+        firstName: string;
+        lastName: string;
+        company: string | null;
+        address1: string;
+        address2: string | null;
+        city: string;
+        state: string;
+        postalCode: string;
+        country: string;
+        phone: string | null;
+        isDefault: boolean;
+    }>;
+    deleteAddress(user: AuthenticatedUser, addressId: string): Promise<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        userId: string;
+        type: string;
+        firstName: string;
+        lastName: string;
+        company: string | null;
+        address1: string;
+        address2: string | null;
+        city: string;
+        state: string;
+        postalCode: string;
+        country: string;
+        phone: string | null;
+        isDefault: boolean;
+    }>;
+    listUsers(): Promise<{
+        email: string;
+        name: string | null;
+        id: string;
+        role: import("@prisma/client").$Enums.Role;
+        createdAt: Date;
+    }[]>;
+}

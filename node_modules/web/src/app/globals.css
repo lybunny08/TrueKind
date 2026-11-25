@@ -1,0 +1,582 @@
+@import "./original.css";
+@import "tailwindcss";
+
+/* ===== FONTS (exact from original site) ===== */
+@font-face {
+  font-display: swap;
+  font-family: "PP Mori";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/PPMori-Regular.woff2") format("woff2"), url("/fonts/PPMori-Regular.woff") format("woff");
+}
+@font-face {
+  font-display: swap;
+  font-family: "PP Mori";
+  font-style: normal;
+  font-weight: 600;
+  src: url("/fonts/PPMori-SemiBold.woff2") format("woff2"), url("/fonts/PPMori-SemiBold.woff") format("woff");
+}
+@font-face {
+  font-display: swap;
+  font-family: "Editorial New";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/EditorialNew-Regular.woff2") format("woff2"), url("/fonts/EditorialNew-Regular.woff") format("woff");
+}
+@font-face {
+  font-display: swap;
+  font-family: "Editorial New";
+  font-style: italic;
+  font-weight: 400;
+  src: url("/fonts/EditorialNew-Italic.woff2") format("woff2"), url("/fonts/EditorialNew-Italic.woff") format("woff");
+}
+@font-face {
+  font-display: swap;
+  font-family: "Editorial New";
+  font-style: italic;
+  font-weight: 300;
+  src: url("/fonts/EditorialNew-Lightitalic.woff2") format("woff2"), url("/fonts/EditorialNew-Lightitalic.woff") format("woff");
+}
+
+.font-serif {
+  font-family: "Editorial New", serif !important;
+  font-style: italic;
+}
+
+/* ===== PHILOSOPHY PAGE — exact styles from reference ===== */
+/* Honest section: two equal halves, star, title with italic em, product image, text, face photo */
+.ingr {
+  display: grid;
+  grid-template-columns: minmax(300px, 39%) 1fr;
+  min-height: 100vh;
+  padding: 6px 4.6vw 6px 4.6vw;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  background: #242424;
+  color: #fff;
+}
+.ingr__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 1fr;
+  gap: 15px 20px;
+}
+.ingr__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px 8px;
+  background: #fff;
+  color: #3b3b3b;
+}
+.ingr__icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #f0f0f0 center / 70% no-repeat;
+}
+.ingr__name {
+  display: flex;
+  flex-direction: column;
+  font-size: 9px;
+  line-height: 1.2;
+}
+.ingr__side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11vh 4vw 14vh;
+  text-align: center;
+}
+.ingr__top { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.ingr__top h2 {
+  max-width: 14em;
+  font-size: clamp(24px, 3.1vw, 40px);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+}
+.ingr em {
+  font-family: "Editorial New", serif;
+  font-style: italic;
+  font-weight: 400;
+}
+.ingr__slash {
+  width: clamp(80px, 12vw, 140px);
+  overflow: visible;
+  stroke: rgba(255, 255, 255, 0.7);
+  stroke-width: 1;
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+.ingr__slash line { vector-effect: non-scaling-stroke; }
+.ingr__stat { display: flex; flex-direction: column; align-items: center; }
+.ingr__stat strong {
+  font-size: clamp(44px, 5.4vw, 72px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.ingr__stat span { margin-top: 4px; font-size: clamp(14px, 1.7vw, 22px); letter-spacing: -0.01em; }
+@media (max-width: 760px) {
+  .ingr { grid-template-columns: 1fr; padding: 8px; margin-top: 0 !important; margin-bottom: 0 !important; }
+  .ingr__card { min-height: 180px; }
+  .ingr__side { order: -1; gap: 40px; padding: 56px 16px; }
+}
+
+/* Values section: 6-column grid of icon badges */
+.values {
+  padding: clamp(40px, 6.5vw, 72px) 4vw clamp(48px, 7vw, 80px);
+  border-top: 1px solid #3b3b3b;
+  background: #fff;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+.values__list {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 24px 0;
+}
+.values__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+.values__circle {
+  display: grid;
+  place-items: center;
+  width: clamp(54px, 7vw, 66px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #f6f6f6;
+}
+.values__peta {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 19px;
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: -0.06em;
+}
+.values__label {
+  display: flex;
+  flex-direction: column;
+  font-size: 9px;
+  line-height: 1.2;
+}
+@media (max-width: 760px) {
+  .values__list { grid-template-columns: repeat(3, 1fr); gap: 36px 12px; }
+}
+@media (max-width: 420px) {
+  .values__list { grid-template-columns: repeat(2, 1fr); }
+}
+.clean {
+  position: relative;
+  min-height: 100vh;
+  padding: 0 4.6vw;
+  background: #fff;
+}
+.clean__title {
+  position: absolute;
+  top: 14%;
+  left: 4.6vw;
+  font-size: clamp(32px, 4.3vw, 64px);
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+}
+.clean__title em {
+  font-family: "Editorial New", serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+}
+.clean__badge {
+  position: absolute;
+  left: 4.6vw;
+  bottom: 14.5%;
+  width: 45px;
+  height: 45px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #3b3b3b;
+  color: #fff;
+}
+.clean__cols {
+  position: absolute;
+  left: 57%;
+  right: 5%;
+  bottom: 14.5%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  font-size: 10px;
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+}
+@media (max-width: 760px) {
+  .clean {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 56px 24px;
+  }
+  .clean__title, .clean__badge, .clean__cols { position: static; }
+  .clean__cols { grid-template-columns: 1fr; font-size: 12px; gap: 14px; }
+}
+.honest {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+.honest__left {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 clamp(24px, 12vw, 140px);
+  text-align: center;
+}
+.honest__star {
+  margin-top: 21vh;
+  color: #3b3b3b;
+}
+.honest__title {
+  margin-top: 28px;
+  max-width: 14ch;
+  font-size: clamp(22px, 2.15vw, 30px);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+}
+.honest__title em {
+  font-family: "Editorial New", serif;
+  font-style: italic;
+  font-weight: 400;
+}
+.honest__product {
+  margin-top: auto;
+  width: clamp(110px, 11vw, 150px);
+  aspect-ratio: 3 / 5;
+  object-fit: cover;
+}
+.honest__text {
+  margin: 28px 0 14px;
+  max-width: 300px;
+  font-size: 10px;
+  line-height: 1.3;
+}
+.honest__right { position: relative; overflow: hidden; }
+.honest__right img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 40% center;
+}
+@media (max-width: 760px) {
+  .honest { grid-template-columns: 1fr; }
+  .honest__right { order: -1; height: 60vh; }
+  .honest__star { margin-top: 48px; }
+  .honest__product { margin: 40px 0 0; }
+  .honest__text { margin-bottom: 40px; }
+}
+.phil__title .font-serif {
+  font-family: "Editorial New", serif !important;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  margin-right: 0.06em;
+}
+.phil {
+  margin-bottom: 0 !important;
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: #fff;
+}
+.phil__lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: #d9d9db;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+  pointer-events: none;
+}
+.phil__lines path { vector-effect: non-scaling-stroke; }
+.phil__title {
+  position: absolute;
+  z-index: 2;
+  font-weight: 500;
+  font-size: clamp(56px, 8.5vw, 120px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+}
+.phil__title .serif {
+  font-family: "Editorial New", serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  margin-right: 0.06em;
+}
+.phil__title--top { top: 5%; left: 4.7%; }
+.phil__title--bottom { bottom: 3%; right: 5%; }
+.phil__shape {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  width: min(80vw, 1000px);
+  height: auto;
+  transform: translate(-50%, -52%);
+}
+.phil__down {
+  position: absolute;
+  z-index: 3;
+  top: 30%;
+  right: 13.5%;
+  width: 50px;
+  height: 50px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #3b3b3b;
+  color: #fff;
+  transition: transform 0.25s;
+}
+.phil__down:hover { transform: translateY(3px); }
+.phil__text {
+  position: absolute;
+  z-index: 2;
+  left: 4.7%;
+  bottom: 5%;
+  max-width: 170px;
+  font-size: 10.5px;
+  line-height: 1.35;
+}
+@media (max-width: 700px) {
+  .phil { display: flex; flex-direction: column; gap: 20px; padding: 28px 20px; }
+  .phil__lines { display: none; }
+  .phil__title, .phil__shape, .phil__down, .phil__text {
+    position: static;
+    transform: none;
+  }
+  .phil__shape { width: 100%; }
+  .phil__title--bottom { align-self: flex-end; }
+  .phil__down { align-self: flex-end; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .phil * { transition: none !important; }
+}
+
+/* ===== GLOBAL SPACING SYSTEM (original fluid rem tokens) ===== */
+:root {
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 3rem;
+  --space-6: 4rem;
+  --space-7: 6rem;
+  --space-8: 8rem;
+  --gutter: 1.5rem;
+}
+
+/* Global section rhythm — matches original `section { margin: 8rem 0 }` */
+body section { margin-top: var(--space-8); margin-bottom: var(--space-8); }
+@media (max-width: 767.98px) {
+  body section { margin-top: 4rem; margin-bottom: 4rem; }
+}
+/* Secondary-page sections that need a top offset below the fixed header */
+main > div > section:first-child { margin-top: var(--space-7); }
+
+/* Homepage section overrides (exact original margins) */
+body #intro { margin-top: 0; margin-bottom: 0; }
+body #ingredients { margin-top: 9rem; margin-bottom: 8rem; }
+body #explore { margin-top: 8rem; margin-bottom: 0; }
+body #ethos { margin-top: 0; margin-bottom: 0; }
+body #quiz { margin-top: 0; margin-bottom: 0; }
+body #journal { margin-top: 0; margin-bottom: 0; }
+body #connect { margin-top: 15%; margin-bottom: 0; }
+body #footer { margin-top: 8rem; }
+@media (max-width: 767.98px) {
+  body #intro, body #ethos, body #quiz, body #journal { margin-top: 0; margin-bottom: 0; }
+  body #ingredients { margin-top: 4rem; margin-bottom: 4rem; }
+  body #connect { margin-top: 30%; }
+}
+
+/* ===== SECONDARY PAGES DESIGN SYSTEM ALIGNMENT ===== */
+:root {
+  --space-1: .5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 3rem;
+  --space-6: 4rem;
+  --space-7: 6rem;
+  --space-8: 8rem;
+}
+
+/* Global section rhythm — original `section { margin: 8rem 0 }` */
+body section { margin-top: var(--space-8) !important; margin-bottom: var(--space-8) !important; }
+@media (max-width: 767.98px) {
+  body section { margin-top: 4rem !important; margin-bottom: 4rem !important; }
+}
+/* Secondary-page sections that need a top offset below the fixed header */
+main > div > section:first-child { margin-top: var(--space-7); }
+
+/* Shop hero touches the top (no margin) */
+#shop-hero { margin-top: 0 !important; }
+
+/* Homepage section overrides (exact original margins) */
+body #intro { margin-top: 0 !important; margin-bottom: 0 !important; }
+body #ingredients { margin-top: 9rem !important; margin-bottom: 8rem !important; }
+body #explore { margin-top: 8rem !important; margin-bottom: 0 !important; }
+body #ethos { margin-top: 0 !important; margin-bottom: 0 !important; }
+body #quiz { margin-top: 0 !important; margin-bottom: 0 !important; }
+body #journal { margin-top: 0 !important; margin-bottom: 0 !important; }
+body #connect { margin-top: 15% !important; margin-bottom: 0 !important; }
+body #footer { margin-top: 8rem !important; }
+@media (max-width: 767.98px) {
+  body #intro, body #ethos, body #quiz, body #journal { margin-top: 0 !important; margin-bottom: 0 !important; }
+  body #ingredients { margin-top: 4rem !important; margin-bottom: 4rem !important; }
+  body #connect { margin-top: 30% !important; }
+}
+
+#intro .intro__title h1 {
+  font-size: 6.5rem;
+  line-height: 1 !important;
+  text-transform: none;
+}
+@media (max-width: 767.98px) {
+  #intro .intro__title h1 { font-size: 3.25rem; }
+}
+
+/* ===== EXPLORE SECTION - pixel-perfect corrections ===== */
+/* Original: .explore__title is 78px tall at base 7.85px = 9.94rem.
+   The .masking-text blocks must keep the base line-height (4.5rem), and the
+   1.4em serif span overflows visually but is clipped by overflow:hidden. */
+#explore .explore__title .masking-text { height: 4.5rem; }
+#explore .explore__title .masking-text .line { line-height: 4.5rem; }
+#explore .explore__title .masking-text .line .font-serif {
+  display: inline-block;
+  font-size: 1.4em;
+  line-height: 1;
+  vertical-align: baseline;
+}
+@media (max-width: 767.98px) {
+  #explore .explore__title .masking-text { height: 2.5rem; }
+  #explore .explore__title .masking-text .line { line-height: 2.5rem; }
+  #explore .explore__title .masking-text .line .font-serif { font-size: 1.4em; }
+}
+
+/* Original: collection title lines are 4rem with line-height 1.1 */
+#explore .half__grid-title .masking-text .line { line-height: 4.4rem; }
+@media (max-width: 767.98px) {
+  #explore .half__grid-title .masking-text .line { line-height: 2.75rem; }
+}
+
+/* Original: product card title occupies 5 lines (~48px = 6.1rem) because the
+   Swiper-rotated card is narrower. Force the title block height for fidelity. */
+/* Original swiper (half__grid-product) is 328px = 41.8rem tall */
+@media (min-width: 767.99px) {
+  #explore .half__grid-product { min-height: 41.8rem; }
+}
+
+/* ===== JOURNAL SECTION - pixel-perfect corrections ===== */
+/* Card spacing: original .journal__card has margin-top 6rem, margin-bottom 3.3rem;
+   the featured card has margin:0 */
+#journal .journal__card { margin-top: 6rem; margin-bottom: 3.3rem; }
+#journal .journal__card.featured { margin: 0; }
+/* Image heights: featured 37rem, small cards 15rem (30rem on mobile) */
+#journal .journal__card-image { height: 15rem; }
+#journal .journal__card.featured .journal__card-image { height: 37rem; }
+/* Image inside must fill the container */
+#journal .journal__card-image .media-img { height: 100%; }
+#journal .journal__card-image .media-img img { height: 100%; width: 100%; object-fit: cover; }
+/* Text padding: small 2rem, featured 2rem 2rem 4rem */
+#journal .journal__card-text { padding: 2rem; }
+#journal .journal__card.featured .journal__card-text { padding: 2rem 2rem 4rem; }
+/* Ribbon position */
+#journal .journal__card .ribbon { left: 2.6875rem; top: 2rem; }
+@media (max-width: 767.98px) {
+  #journal .journal__card { margin: 0; }
+  #journal .journal__card.featured .journal__card-image { height: 30rem; }
+  #journal .journal__card .ribbon { left: 1rem; top: 1rem; font-size: .8rem; }
+  #journal .journal__card.featured .journal__card-text { padding: 2rem; }
+}
+/* Hover zoom: original image starts at scale(1.1) and scales to 1 on hover */
+#journal .journal__card img { transform: scale(1.1); transition: transform 1s cubic-bezier(.18,.71,.11,1); }
+#journal .journal__card:hover img { transform: scale(1); }
+/* The two small cards on the right: their .row is a flex item inside an
+   align-items:center column, so it must be forced to full width (original
+   has ~208px cards = 50% of the right column) */
+#journal .col-md-6.d-flex > .row { width: 100%; }
+#journal .col-md-6.d-flex > .row > .col-md-6 { width: 50%; flex: 0 0 50%; }
+/* "clean" serif is 1.4em */
+#journal .journal__title .font-serif { font-size: 1.4em; }
+
+/* Bootstrap gutter/spacing utilities missing from the extracted CSS */
+.gy-4 { --bs-gutter-y: 1.5rem; }
+.mt-5 { margin-top: 3rem !important; }
+.mt-4 { margin-top: 1.5rem !important; }
+.mb-4 { margin-bottom: 1.5rem !important; }
+
+/* ===== SECONDARY PAGES DESIGN SYSTEM ALIGNMENT ===== */
+.font-playfair { font-family: "PP Mori", sans-serif !important; font-weight: 600 !important; }
+.font-playfair.font-light { font-weight: 400 !important; }
+.text-black\/60, .text-black\/70, .text-black\/50 { color: #787878 !important; }
+.text-gray2 { color: #a0a0a0 !important; }
+.text-gray3 { color: #787878 !important; }
+.max-w-7xl { max-width: 92% !important; margin-left: auto !important; margin-right: auto !important; }
+.px-4.sm\:px-6.lg\:px-8 { padding-left: calc(var(--bs-gutter-x, 1.5rem) * .5) !important; padding-right: calc(var(--bs-gutter-x, 1.5rem) * .5) !important; }
+.bg-black { background-color: #3b3b3b !important; }
+.rounded-full { border-radius: 5rem !important; }
+.text-sm { font-size: 1rem !important; }
+.text-xs { font-size: .8rem !important; }
+/* Missing Bootstrap columns used on secondary pages */
+@media (min-width: 768px) {
+  .col-md-1 { flex: 0 0 auto; width: 8.33333333%; }
+  .col-md-3 { flex: 0 0 auto; width: 25%; }
+  .col-md-9 { flex: 0 0 auto; width: 75%; }
+  .col-md-8 { flex: 0 0 auto; width: 66.66666667%; }
+  .col-md-10 { flex: 0 0 auto; width: 83.33333333%; }
+  .col-md-12 { flex: 0 0 auto; width: 100%; }
+}
+.filter-group { margin: 2rem 0; }
+.filter-group ul { margin-top: 1rem; }
+.filter-group li { margin: .5rem 0; }
+input[type="checkbox"] { width: auto; accent-color: #3b3b3b; }
+.col-md-4 .product__card { width: 100% !important; }
+section > .media-img { overflow: hidden; }
+section > .media-img img { height: 100%; width: 100%; object-fit: cover; }
+
+html { overflow-x: hidden; }
+
+/* ===== Cart Drawer ===== */
+.cart-drawer-content {
+  position: absolute;
+  right: -400px;
+  top: 0;
+  bottom: 0;
+  width: 400px;
+  transform: none !important;
+  transition: right 0.8s cubic-bezier(0.18, 0.71, 0.11, 1);
+}
+.cart-drawer-content--open {
+  right: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

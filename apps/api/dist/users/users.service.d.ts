@@ -1,0 +1,130 @@
+import { PrismaService } from "../prisma/prisma.service.js";
+import type { AddressInput } from "../common/types.js";
+export declare class UsersService {
+    private prisma;
+    constructor(prisma: PrismaService);
+    findById(id: string): Promise<{
+        email: string;
+        name: string | null;
+        id: string;
+        role: import("@prisma/client").$Enums.Role;
+        createdAt: Date;
+        addresses: {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            userId: string;
+            type: string;
+            firstName: string;
+            lastName: string;
+            company: string | null;
+            address1: string;
+            address2: string | null;
+            city: string;
+            state: string;
+            postalCode: string;
+            country: string;
+            phone: string | null;
+            isDefault: boolean;
+        }[];
+    }>;
+    findByEmail(email: string): Promise<{
+        email: string;
+        password: string;
+        name: string | null;
+        id: string;
+        role: import("@prisma/client").$Enums.Role;
+        createdAt: Date;
+        updatedAt: Date;
+    } | null>;
+    updateProfile(userId: string, data: {
+        name?: string;
+        email?: string;
+    }): Promise<{
+        email: string;
+        name: string | null;
+        id: string;
+        role: import("@prisma/client").$Enums.Role;
+    }>;
+    changePassword(userId: string, newPassword: string): Promise<{
+        email: string;
+        password: string;
+        name: string | null;
+        id: string;
+        role: import("@prisma/client").$Enums.Role;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    getAddresses(userId: string): Promise<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        userId: string;
+        type: string;
+        firstName: string;
+        lastName: string;
+        company: string | null;
+        address1: string;
+        address2: string | null;
+        city: string;
+        state: string;
+        postalCode: string;
+        country: string;
+        phone: string | null;
+        isDefault: boolean;
+    }[]>;
+    createAddress(userId: string, data: AddressInput): Promise<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        userId: string;
+        type: string;
+        firstName: string;
+        lastName: string;
+        company: string | null;
+        address1: string;
+        address2: string | null;
+        city: string;
+        state: string;
+        postalCode: string;
+        country: string;
+        phone: string | null;
+        isDefault: boolean;
+    }>;
+    updateAddress(addressId: string, userId: string, data: Partial<AddressInput>): Promise<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        userId: string;
+        type: string;
+        firstName: string;
+        lastName: string;
+        company: string | null;
+        address1: string;
+        address2: string | null;
+        city: string;
+        state: string;
+        postalCode: string;
+        country: string;
+        phone: string | null;
+        isDefault: boolean;
+    }>;
+    deleteAddress(addressId: string, userId: string): Promise<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        userId: string;
+        type: string;
+        firstName: string;
+        lastName: string;
+        company: string | null;
+        address1: string;
+        address2: string | null;
+        city: string;
+        state: string;
+        postalCode: string;
+        country: string;
+        phone: string | null;
+        isDefault: boolean;
+    }>;
+}
