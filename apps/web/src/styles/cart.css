@@ -1,0 +1,63 @@
+/* Cart UI — tailles et espacements centralisés pour le tiroir, /cart et /checkout. */
+
+.cart-ui {
+  --cart-drawer-title: 2.380952381rem;
+  --cart-page-title: 1.875rem;
+  --cart-summary-title: 1.25rem;
+  --cart-page-cta: 1.125rem;
+  --cart-link: 12px;
+  --cart-cta: 0.8rem;
+  --cart-cta-arrow: 3rem;
+  --cart-cta-pad-y: 1.5rem;
+  --cart-pad-x: 2rem;
+}
+
+@media (min-width: 768px) {
+  .cart-ui {
+    --cart-drawer-title: 1.6rem;
+    --cart-page-title: 2.25rem;
+    --cart-cta: 0.6rem;
+    --cart-cta-arrow: 2rem;
+    --cart-cta-pad-y: 0.75rem;
+  }
+}
+
+.cart-ui.cart-drawer .cart-drawer__header-title {
+  font-size: var(--cart-drawer-title);
+}
+
+.cart-ui.cart-drawer .cart-drawer-content {
+  padding-left: var(--cart-pad-x);
+  padding-right: var(--cart-pad-x);
+}
+
+.cart-ui.cart-drawer .cart-drawer-emptystate .icon-global span {
+  font-size: var(--cart-link);
+}
+
+.cart-ui.cart-drawer .cart-drawer__footer-checkout {
+  font-size: var(--cart-cta);
+  padding-top: var(--cart-cta-pad-y);
+  padding-bottom: var(--cart-cta-pad-y);
+}
+
+.cart-ui.cart-drawer .cart-drawer__footer-checkout .btn__icon-arrow {
+  width: var(--cart-cta-arrow);
+  height: var(--cart-cta-arrow);
+}
+
+.cart-ui .cart-page-title {
+  font-size: var(--cart-page-title);
+}
+
+.cart-ui .cart-section-title {
+  font-size: var(--cart-summary-title);
+}
+
+.cart-ui .cart-empty-link {
+  font-size: var(--cart-link);
+}
+
+.cart-ui .cart-page-cta {
+  font-size: var(--cart-page-cta);
+}

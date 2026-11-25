@@ -10,9 +10,9 @@ export default function CartPage() {
   const { items, removeItem, updateQuantity, subtotal, itemCount } = useCart();
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="cart-ui cart-page bg-white min-h-screen">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-        <h1 className="font-playfair text-3xl md:text-4xl font-light mb-12">
+        <h1 className="cart-page-title font-playfair text-3xl md:text-4xl font-light mb-12">
           Your Cart
         </h1>
 
@@ -20,7 +20,7 @@ export default function CartPage() {
           <div className="text-center py-16">
             <p className="text-black/60 mb-6">Your cart is empty.</p>
             <Link href="/products">
-              <Button className="text-[1px] ">Browse Products</Button>
+              <Button className="cart-empty-link">Browse Products</Button>
             </Link>
           </div>
         ) : (
@@ -87,7 +87,7 @@ export default function CartPage() {
 
             <div className="lg:col-span-1">
               <div className="border border-black/10 p-6 sticky top-24">
-                <h2 className="font-playfair text-xl font-light mb-6">
+                <h2 className="cart-section-title font-playfair text-xl font-light mb-6">
                   Order Summary
                 </h2>
                 <div className="flex justify-between text-sm mb-2">
@@ -103,7 +103,7 @@ export default function CartPage() {
                   <span>{formatPrice(subtotal)}</span>
                 </div>
                 <Link href="/checkout">
-                  <Button size="large" className="w-full">
+                  <Button size="large" className="cart-page-cta w-full">
                     Continue to Checkout
                   </Button>
                 </Link>
