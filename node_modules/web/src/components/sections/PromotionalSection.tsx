@@ -23,19 +23,21 @@ export function PromotionalSection() {
           </div>
 
           {/* Offer text overlay on image */}
-          <div className="offer__text">
-            <h3 className="title font-heading">
-              <span className="masking-text"><span className="line">Exciting</span></span>
-              <span className="masking-text"><span className="line">offers <i>awaits</i></span></span>
-            </h3>
-            <p className="description">Shop now to get a chance to win 2 extra products. Grab the offer before it ends.</p>
-          </div>
+          <div className="offer__copy">
+            <div className="offer__text">
+              <h3 className="title font-heading">
+                <span className="masking-text"><span className="line">Exciting</span></span>
+                <span className="masking-text"><span className="line">offers <i>awaits</i></span></span>
+              </h3>
+              <p className="description">Shop now to get a chance to win 2 extra products. Grab the offer before it ends.</p>
+            </div>
 
-          <div className="offer__cta">
-            <Link href="/products" className="offer__more">
-              <span className="arrowlong"><ArrowRight /></span>
-              <span>Shop Now</span>
-            </Link>
+            <div className="offer__cta">
+              <Link href="/products" className="offer__more">
+                <span className="arrowlong"><ArrowRight /></span>
+                <span>Shop Now</span>
+              </Link>
+            </div>
           </div>
         </div>
 
