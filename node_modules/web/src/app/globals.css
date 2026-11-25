@@ -581,3 +581,26 @@ html { overflow-x: hidden; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
+
+/* ===== HOME — SECTION SOUS LE HERO (Clean, Concise, Conscious) ===== */
+#ingredients .cc__top {
+  container-type: inline-size;
+  width: min(100%, 820px);
+}
+#ingredients .cc__title {
+  font-size: 6.4cqw; font-weight: 500; line-height: 1.02;
+  letter-spacing: -0.02em; white-space: nowrap;
+}
+#ingredients .cc__serif {
+  font-family: "Editorial New", Georgia, serif;
+  font-style: italic;
+  text-transform: none;
+  font-size: 1.375em; line-height: 1; letter-spacing: -0.02em;
+  margin-left: 0.12em;
+  text-decoration: underline; text-decoration-thickness: 1px;
+  text-underline-offset: 0.12em;
+}
+#ingredients .cc__tag {
+  width: 34%; max-width: 34%; margin-left: 0;
+  font-size: max(7px, 1.45cqw); line-height: 1.3;
+}
