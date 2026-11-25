@@ -183,7 +183,7 @@ Expected : build terminé sans erreur TypeScript ni CSS.
 
 - [x] **Step 7: Commit**
 
-Créer une branche locale `ui/home-after-hero` depuis la branche courante, committer avec `feat(home): replace section below hero with clean concise conscious visual`, ne pas pusher sans demande explicite.
+Créer une branche locale `ui/home` depuis la branche courante, committer avec `feat(home): replace section below hero with clean concise conscious visual`, ne pas pusher sans demande explicite.
 
 ## Revision (correction utilisateur, 2026-11-25)
 
