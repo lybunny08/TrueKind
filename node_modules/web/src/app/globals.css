@@ -1,5 +1,6 @@
 @import "./original.css";
 @import "tailwindcss";
+@import "../styles/cart.css";
 
 /* ===== FONTS (exact from original site) ===== */
 @font-face {
