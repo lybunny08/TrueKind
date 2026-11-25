@@ -156,7 +156,6 @@ The seed script creates:
 - 7 categories
 - 12 products with images from the original website
 - 5 blog articles
-- 1 admin user (`admin@truekind.com` / `admin123`)
 
 ## Known Limitations
 
