@@ -9,6 +9,15 @@ from playwright.sync_api import sync_playwright
 
 BASE_URL = "http://localhost:3000"
 
+START_FRAME_RECORDER = """() => {
+  window.__frames = [];
+  const tick = () => {
+    window.__frames.push(window.scrollY);
+    if (window.__frames.length < 200) requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+}"""
+
 
 class LenisSmoothScrollTest(unittest.TestCase):
     @classmethod
@@ -28,29 +37,27 @@ class LenisSmoothScrollTest(unittest.TestCase):
         page.wait_for_selector(".preloader", state="hidden", timeout=10000)
         return context, page
 
+    def record_wheel_frames(self, page):
+        page.evaluate("() => window.scrollTo(0, 0)")
+        page.evaluate(START_FRAME_RECORDER)
+        page.mouse.move(720, 450)
+        page.mouse.wheel(0, 900)
+        page.wait_for_timeout(1800)
+        frames = page.evaluate("() => window.__frames")
+        final = frames[-1]
+        return final, [y for y in frames if 0 < y < final * 0.9]
+
     def test_wheel_scroll_is_animated(self):
         context, page = self.open_home(viewport={"width": 1440, "height": 900})
         try:
             classes = page.evaluate("() => document.documentElement.className")
             self.assertIn("lenis", classes, msg="classe Lenis absente")
 
-            page.evaluate("() => window.scrollTo(0, 0)")
-            page.mouse.move(720, 450)
-            page.mouse.wheel(0, 900)
-            page.wait_for_timeout(50)
-            self.assertTrue(
-                page.evaluate("() => document.documentElement.classList.contains('lenis-smooth')"),
-                msg="smooth scroll désactivé pendant la molette",
-            )
-            initial = page.evaluate("() => window.scrollY")
-            page.wait_for_timeout(200)
-            intermediate = page.evaluate("() => window.scrollY")
-            page.wait_for_timeout(1600)
-            final = page.evaluate("() => window.scrollY")
-
+            final, intermediate = self.record_wheel_frames(page)
             self.assertGreater(final, 100, msg="le scroll n'a pas avancé")
-            self.assertLess(initial, final, msg="le scroll a sauté instantanément")
-            self.assertLessEqual(intermediate, final, msg="le scroll a reculé pendant l'animation")
+            self.assertGreaterEqual(
+                len(intermediate), 2, msg="le scroll doit passer par des positions intermédiaires"
+            )
         finally:
             context.close()
 
@@ -62,31 +69,49 @@ class LenisSmoothScrollTest(unittest.TestCase):
             classes = page.evaluate("() => document.documentElement.className")
             self.assertIn("lenis", classes, msg="classe Lenis absente")
 
-            page.evaluate("() => window.scrollTo(0, 0)")
-            page.mouse.move(720, 450)
-            page.mouse.wheel(0, 900)
-            page.wait_for_timeout(150)
-            early = page.evaluate("() => window.scrollY")
-            page.wait_for_timeout(1600)
-            final = page.evaluate("() => window.scrollY")
-
+            final, intermediate = self.record_wheel_frames(page)
             self.assertGreater(final, 100, msg="le scroll n'a pas avancé")
-            self.assertGreaterEqual(
-                early, final * 0.9, msg="reduced-motion doit suivre la molette sans interpolation"
+            self.assertLessEqual(
+                len(intermediate), 1, msg="reduced-motion garde une interpolation"
             )
         finally:
             context.close()
 
-    def test_cart_list_is_excluded_from_smooth_scroll(self):
+    def test_cart_list_scrolls_without_moving_page(self):
         context, page = self.open_home(viewport={"width": 1440, "height": 900})
         try:
             page.locator("#cart-nav").click()
             page.wait_for_selector(".cart-drawer__list", state="visible")
-            self.assertEqual(
-                page.locator(".cart-drawer__list[data-lenis-prevent]").count(),
-                1,
-                msg="la liste du panier doit garder son scroll natif",
+            page.wait_for_timeout(900)
+            page.evaluate(
+                """() => {
+                  const list = document.querySelector('.cart-drawer__list');
+                  const spacer = document.createElement('div');
+                  spacer.style.height = '3000px';
+                  list.appendChild(spacer);
+                  list.scrollTop = 0;
+                }"""
             )
+
+            box = page.locator(".cart-drawer__list").bounding_box()
+            page.mouse.move(box["x"] + box["width"] / 2, box["y"] + box["height"] / 2)
+            page.mouse.wheel(0, 600)
+            page.wait_for_timeout(200)
+
+            self.assertGreater(
+                page.evaluate("() => document.querySelector('.cart-drawer__list').scrollTop"),
+                0,
+                msg="la liste du panier ne défile pas",
+            )
+            self.assertEqual(
+                page.evaluate("() => window.scrollY"), 0, msg="la page a défilé avec le panier"
+            )
+
+            page.locator("button[aria-label='Close cart']").click()
+            page.wait_for_timeout(900)
+            page.mouse.move(720, 450)
+            page.mouse.wheel(0, 600)
+            page.wait_for_function("() => window.scrollY > 100", timeout=3000)
         finally:
             context.close()
 
