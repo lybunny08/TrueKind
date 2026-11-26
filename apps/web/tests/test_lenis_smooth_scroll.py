@@ -33,11 +33,15 @@ class LenisSmoothScrollTest(unittest.TestCase):
         try:
             classes = page.evaluate("() => document.documentElement.className")
             self.assertIn("lenis", classes, msg="classe Lenis absente")
-            self.assertIn("lenis-smooth", classes, msg="smooth scroll désactivé")
 
             page.evaluate("() => window.scrollTo(0, 0)")
             page.mouse.move(720, 450)
             page.mouse.wheel(0, 900)
+            page.wait_for_timeout(50)
+            self.assertTrue(
+                page.evaluate("() => document.documentElement.classList.contains('lenis-smooth')"),
+                msg="smooth scroll désactivé pendant la molette",
+            )
             initial = page.evaluate("() => window.scrollY")
             page.wait_for_timeout(200)
             intermediate = page.evaluate("() => window.scrollY")
@@ -57,7 +61,18 @@ class LenisSmoothScrollTest(unittest.TestCase):
         try:
             classes = page.evaluate("() => document.documentElement.className")
             self.assertIn("lenis", classes, msg="classe Lenis absente")
-            self.assertNotIn("lenis-smooth", classes, msg="smooth scroll actif malgré reduced-motion")
+
+            page.evaluate("() => window.scrollTo(0, 0)")
+            page.mouse.move(720, 450)
+            page.mouse.wheel(0, 900)
+            initial = page.evaluate("() => window.scrollY")
+            page.wait_for_timeout(1600)
+            final = page.evaluate("() => window.scrollY")
+
+            self.assertGreater(final, 100, msg="le scroll n'a pas avancé")
+            self.assertGreaterEqual(
+                initial, final * 0.8, msg="reduced-motion doit suivre la molette sans interpolation"
+            )
         finally:
             context.close()
 

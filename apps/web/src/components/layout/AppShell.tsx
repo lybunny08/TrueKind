@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { CartProvider } from "@/contexts/cart";
 import { Preloader } from "@/components/layout/Preloader";
+import SmoothScroll from "@/components/layout/SmoothScroll";
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const [showPreloader, setShowPreloader] = useState(true);
@@ -10,7 +11,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   return (
     <CartProvider>
       {showPreloader && <Preloader onDone={() => setShowPreloader(false)} />}
-      {children}
+      <SmoothScroll>{children}</SmoothScroll>
     </CartProvider>
   );
 }
