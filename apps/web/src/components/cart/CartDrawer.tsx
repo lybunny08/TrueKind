@@ -58,7 +58,7 @@ export function CartDrawer() {
           </div>
         )}
 
-        <div className="cart-drawer__list h-[75%] overflow-y-auto">
+        <div data-lenis-prevent className="cart-drawer__list h-[75%] overflow-y-auto">
           {items.map((item) => (
             <div key={item.productId} className="product__list-item flex items-center gap-6 border-b border-[#d8d8d8] py-6">
               <div className="relative h-24 w-24 shrink-0">

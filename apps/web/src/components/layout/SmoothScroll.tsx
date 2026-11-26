@@ -6,10 +6,12 @@ import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { ReactLenis, useLenis } from "lenis/react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { useCart } from "@/contexts/cart";
 
 function SmoothScrollEffects() {
   const lenis = useLenis();
   const pathname = usePathname();
+  const { isOpen } = useCart();
   const previousPath = useRef(pathname);
 
   useEffect(() => {
@@ -26,6 +28,16 @@ function SmoothScrollEffects() {
   useLenis(() => {
     ScrollTrigger.update();
   });
+
+  useEffect(() => {
+    if (!lenis) return;
+
+    if (isOpen) {
+      lenis.stop();
+    } else {
+      lenis.start();
+    }
+  }, [lenis, isOpen]);
 
   useEffect(() => {
     if (!lenis || previousPath.current === pathname) return;
