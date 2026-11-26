@@ -1,5 +1,6 @@
 @import "./original.css";
 @import "tailwindcss";
+@import "../styles/cart.css";
 
 /* ===== FONTS (exact from original site) ===== */
 @font-face {
@@ -579,4 +580,59 @@ html { overflow-x: hidden; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ===== HOME — SECTION SOUS LE HERO (Clean, Concise, Conscious) ===== */
+#ingredients .cc__top {
+  container-type: inline-size;
+  width: min(100%, 820px);
+}
+#ingredients .cc__title {
+  font-size: 6.4cqw; font-weight: 500; line-height: 1.02;
+  letter-spacing: -0.02em; white-space: nowrap;
+}
+#ingredients .cc__serif {
+  font-family: "Editorial New", Georgia, serif;
+  font-style: italic;
+  text-transform: none;
+  font-size: 1.375em; line-height: 1; letter-spacing: -0.02em;
+  margin-left: 0.12em;
+  text-decoration: underline; text-decoration-thickness: 1px;
+  text-underline-offset: 0.12em;
+}
+#ingredients .cc__tag {
+  width: 34%; max-width: 34%; margin-left: 0;
+  font-size: max(7px, 1.45cqw); line-height: 1.3;
+}
+
+/* ===== HOME — OFFRE À DROITE DE LA SECTION QUIZ ===== */
+@media (min-width: 768px) {
+  #quiz .offer__copy {
+    position: absolute;
+    left: calc(100% + 4.375rem);
+    top: 5rem;
+    width: min(34rem, 70%);
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  #quiz .half__grid .offer__text,
+  #quiz .half__grid .offer__cta {
+    position: static;
+    left: auto;
+    right: auto;
+    top: auto;
+  }
+  #quiz .half__grid .offer__cta {
+    margin-top: 1.5rem;
+  }
+}
+@media (min-width: 1200px) {
+  #quiz .offer__copy {
+    width: calc(100% - 6.25rem);
+  }
+  #quiz .half__grid .offer__cta {
+    align-self: flex-end;
+  }
 }

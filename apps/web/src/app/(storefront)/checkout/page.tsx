@@ -99,10 +99,10 @@ export default function CheckoutPage() {
 
   if (items.length === 0) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="cart-ui checkout-page min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="font-playfair text-3xl mb-4">Your cart is empty</h1>
-          <Link href="/products" className="text-[1px] hover:underline">
+          <Link href="/products" className="cart-empty-link hover:underline">
             Browse Products
           </Link>
         </div>
@@ -111,14 +111,14 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="cart-ui checkout-page bg-white min-h-screen">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-        <h1 className="font-playfair text-3xl md:text-4xl font-light mb-12">
+        <h1 className="cart-page-title font-playfair text-3xl md:text-4xl font-light mb-12">
           Checkout
         </h1>
         <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div>
-            <h2 className="font-playfair text-xl font-light mb-6">
+            <h2 className="cart-section-title font-playfair text-xl font-light mb-6">
               Shipping Information
             </h2>
             <div className="space-y-6">
@@ -246,7 +246,7 @@ export default function CheckoutPage() {
           </div>
 
           <div>
-            <h2 className="font-playfair text-xl font-light mb-6">
+            <h2 className="cart-section-title font-playfair text-xl font-light mb-6">
               Order Summary
             </h2>
             <div className="border border-black/10 p-6">

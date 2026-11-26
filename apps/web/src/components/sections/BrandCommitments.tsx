@@ -19,12 +19,13 @@ export function BrandCommitments() {
     <section ref={root} id="ingredients">
       <div className="container">
         <div className="ingredients__text">
-          <h2 className="ingredients__title">
-            <span className="masking-text"><span className="line" style={{ textAlign: "start" }}>Clean, Conscious,</span></span>
-            <span className="masking-text"><span className="line" style={{ textAlign: "start" }}>Performance</span></span>
-            <span className="masking-text"><span className="line" style={{ textAlign: "start" }}><span className="ingredients__title-serif font-serif text-underline-border">skincare.</span></span></span>
-          </h2>
-          <p className="ingredients__desc maxwidth">Unreservedly honest products that truly work, be kind to skin and the planet – no exceptions!</p>
+          <div className="cc__top">
+            <h2 className="ingredients__title cc__title">
+              <span className="masking-text"><span className="line" style={{ textAlign: "start" }}>CLEAN, CONCISE,</span></span>
+              <span className="masking-text"><span className="line" style={{ textAlign: "start" }}>CONSCIOUS<span className="ingredients__title-serif font-serif text-underline-border cc__serif">skincare.</span></span></span>
+            </h2>
+            <p className="ingredients__desc maxwidth cc__tag">Unreservedly honest products that truly work, be kind to skin and the planet – no exceptions!</p>
+          </div>
           <div className="ingredients__bgmobile" />
           <svg className="ingredients__arrow" viewBox="0 0 122 195" width="122" height="195" fill="none" aria-hidden="true">
             <path d="M62 194C62 194 61 188 61 188M61 188L61 193M61 188L57 193" stroke="#3b3b3b" strokeWidth="1" />
