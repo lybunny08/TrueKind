@@ -65,13 +65,14 @@ class LenisSmoothScrollTest(unittest.TestCase):
             page.evaluate("() => window.scrollTo(0, 0)")
             page.mouse.move(720, 450)
             page.mouse.wheel(0, 900)
-            initial = page.evaluate("() => window.scrollY")
+            page.wait_for_timeout(150)
+            early = page.evaluate("() => window.scrollY")
             page.wait_for_timeout(1600)
             final = page.evaluate("() => window.scrollY")
 
             self.assertGreater(final, 100, msg="le scroll n'a pas avancé")
             self.assertGreaterEqual(
-                initial, final * 0.8, msg="reduced-motion doit suivre la molette sans interpolation"
+                early, final * 0.9, msg="reduced-motion doit suivre la molette sans interpolation"
             )
         finally:
             context.close()

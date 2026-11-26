@@ -38,7 +38,7 @@ function SmoothScrollEffects() {
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   return (
-    <ReactLenis root options={{ autoRaf: false }}>
+    <ReactLenis root options={{ autoRaf: false, respectReducedMotion: true }}>
       <SmoothScrollEffects />
       {children}
     </ReactLenis>
